@@ -1,7 +1,7 @@
 import sublime, sublime_plugin
 import os, string, re
 
-plugin_directory = os.getcwdu()
+plugin_directory = os.getcwd()
 
 class DetectSyntaxCommand(sublime_plugin.EventListener):
 	def __init__(self):
@@ -30,10 +30,10 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 	def on_load(self, view):
 		self.detect_syntax(view)
 
-	
+
 	def on_post_save(self, view):
 		self.detect_syntax(view)
-	  
+
 
 	def detect_syntax(self, view):
 		if view.is_scratch() or not view.file_name: # buffer has never been saved
@@ -41,7 +41,7 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 
 		self.reset_cache_variables(view)
 		self.load_syntaxes()
-		
+
 		if not self.syntaxes:
 			return
 
@@ -87,9 +87,9 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 			# let's make sure it exists first!
 			if os.path.exists(new_syntax_path):
 				self.view.set_syntax_file(new_syntax)
-				print 'Syntax set to ' + name + ' using ' + new_syntax_path
+				print('Syntax set to ' + name + ' using ' + new_syntax_path)
 			else:
-				print 'Syntax file for ' + name + ' does not exist at ' + new_syntax_path
+				print('Syntax file for ' + name + ' does not exist at ' + new_syntax_path)
 
 
 	def load_syntaxes(self):
@@ -103,7 +103,7 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 		user_syntaxes = settings.get("syntaxes")
 		if user_syntaxes is None:
 			user_syntaxes = []
-		
+
 		self.syntaxes = user_syntaxes + default_syntaxes
 
 
@@ -218,7 +218,7 @@ class DetectSyntaxCommand(sublime_plugin.EventListener):
 	"reraise_exceptions": false,
 
 	// If you want to have a syntax applied when new files are created, set new_file_syntax to the name of the syntax to use.
-	// The format is exactly the same as "name" in the rules below. For example, if you want to have a new file use 
+	// The format is exactly the same as "name" in the rules below. For example, if you want to have a new file use
 	// JavaScript syntax, set new_file_syntax to 'JavaScript'.
 	"new_file_syntax": false,
 
